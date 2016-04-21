@@ -1,0 +1,1 @@
+# ninja-name-generator-web
