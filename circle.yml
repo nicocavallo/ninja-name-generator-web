@@ -24,7 +24,7 @@ dependencies:
   # Compile all sources
   pre:
     - mkdir -p ~/.sbt
-    - echo $"[repositories]\nlocal\nmy-ivy-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type$\nmy-maven-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy1/" > ~/.sbt/repositories
+    - "echo '[repositories]\nlocal\nmy-ivy-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type$\nmy-maven-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy1/' > ~/.sbt/repositories"
     - mkdir -p ~/.sbt/0.13/plugins
     - echo 'addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.0-RC1")' > ~/.sbt/0.13/plugins/credentials.sbt
   override:
