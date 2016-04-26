@@ -1,4 +1,7 @@
 machine:
+  environment:
+    SBT_OPTS: "-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled
+-XX:MaxPermSize=256M -Dsbt.override.build.repos=true"
   timezone: UTC
   java:
     version: oraclejdk8
@@ -19,6 +22,14 @@ dependencies:
     - "project/target/resolution-cache"
     - "project/target/streams"
   # Compile all sources
+  pre:
+    - mkdir -p ~/.sbt
+    - echo '[repositories]
+        local
+        my-ivy-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type$
+        my-maven-proxy-releases: http://artifactorylb-130644380.eu-west-1.elb.amazonaws.com/artifactory/local-and-remote-proxy1/' > ~/.sbt/repositories
+    - mkdir -p ~/.sbt/0.13/plugins
+    - echo 'addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.1.0-RC1")' > ~/.sbt/0.13/plugins/credentials.sbt
   override:
     - sbt test:compile
 
